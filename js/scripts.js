@@ -17,27 +17,28 @@ const diff = document.getElementById('difficulty');
 const container = document.querySelector('main > .grid-container')
     console.log('container', container, typeof container)
 
+
+const punteggio = document.querySelector('score');
 // random rumber
 const randomNumbers = [];
 for (let i = 0; i < 16; i++) {
     // Genero un numero casuale
-    let gino = generateRandomNumber(1, 16);
-    console.log(gino);
+    let red = generateRandomNumber(1, 100);
+    console.log(red);
 
     // Controllo se questo numero appena generato è già presente nell'array
-    let foundInArray = randomNumbers.includes(gino);
+    let foundInArray = randomNumbers.includes(red);
     while (foundInArray == true) {
-        gino = generateRandomNumber(1, 16);
-        console.log(gino);
-        foundInArray = randomNumbers.includes(gino);
+        red = generateRandomNumber(1, 100);
+        console.log(red);
+        foundInArray = randomNumbers.includes(red);
     }
 
-    randomNumbers.push(gino);
+    randomNumbers.push(red);
     
     console.log(randomNumbers);
 }
 
-console.log(randomNumbers);
 
 /* 
     FUNZIONI
@@ -47,8 +48,8 @@ function generateRandomNumber(min, max) {
     
     return randNum;
 }
-
-
+// inizzializzo score vuoto
+let score = '';
 
 
 play.addEventListener('click', function(){
@@ -57,16 +58,28 @@ play.addEventListener('click', function(){
     container.innerHTML= '';
 
     for (let i = 1; i <= cellNumber; i++){
+        score = 0;
         const cell = document.createElement('div');
         cell.innerHTML=  i ;
         cell.classList.add('cell');
         cell.classList.add('cell-' + cellNumber);
         cell.addEventListener('click', function(){
-            this.classList.add('active');
+            if( randomNumbers.includes(i)){
+            this.classList.add('active-red');
+            alert('You loooose' + ' il tuo punteggio e di : ' + score)
+            container.innerHTML+='';
+            }   
+            else{
+            this.classList.add('active')
+            score++;
+            }
+            console.log(score,"score", typeof score)
             console.log(this.innerHTML);
         });
         container.append(cell);
+        
      }
+     
 })
 
 
