@@ -1,0 +1,59 @@
+.img-container{
+    width: 100px;
+    height: 100px;
+}
+
+img{
+    width: 100%;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1000px;
+    margin: 0 auto;
+}
+main{
+    background-color:#7FFFD4;
+}
+main > .container {
+    width: 1000px;
+
+}
+ .cell {
+    width: 10%;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 1px solid black;
+    background-color: lightcoral;
+    cursor: pointer;
+}
+
+.cell.active {
+    background-color: #7FFFD4;
+    color: black;
+}
+.grid-container > .cell.cell-100{
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+}
+.grid-container > .cell.cell-81{
+    width: calc(1000px / 9);
+    height: calc(1000px / 9);
+    line-height: calc(1000px / 9);
+}
+
+.grid-container > .cell.cell-49{
+    width: calc(1000px / 7);
+    height: calc(1000px / 7);
+    line-height: calc(1000px / 7);
+}
+
+
+footer{
+    height: 60px;
+}
