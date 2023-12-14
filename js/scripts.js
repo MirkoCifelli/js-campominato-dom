@@ -92,7 +92,8 @@ play.addEventListener('click', function(){
         //     cell.classList.add('active-red');
         // }
 
-        cell.addEventListener('click', function(){
+        cell.addEventListener('click', function handleClick(){
+            cell.removeEventListener('click',handleClick)
             if( randomNumbers.includes(i)){
             this.classList.add('active-red');
             alert('You loooose' + ' il tuo punteggio e di : ' + score)
@@ -101,6 +102,7 @@ play.addEventListener('click', function(){
             else{
                 // Se ha già la classe active skippa
             this.classList.add('active')
+            // if(this.classList.contains('active'))
             score++;
             }
             console.log(score,"score", typeof score)
