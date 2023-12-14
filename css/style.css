@@ -28,12 +28,16 @@ main > .container {
     font-size: 1.5rem;
     font-weight: bold;
     border: 1px solid black;
-    background-color: lightcoral;
+    background-color: white;
     cursor: pointer;
 }
 
 .cell.active {
     background-color: #7FFFD4;
+    color: black;
+}
+.cell.active-red{
+    background-color: red;
     color: black;
 }
 .grid-container > .cell.cell-100{
