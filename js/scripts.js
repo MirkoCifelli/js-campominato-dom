@@ -12,32 +12,32 @@
 const play = document.querySelector("button")
 console.log('play', play, typeof play)
 
-const diff = document.getElementById('difficulty');
+// const diff = parseInt(document.getElementById('difficulty').value);
 
 const container = document.querySelector('main > .grid-container')
     console.log('container', container, typeof container)
 
 
-const punteggio = document.querySelector('score');
-// random rumber
-const randomNumbers = [];
-for (let i = 0; i < 16; i++) {
-    // Genero un numero casuale
-    let red = generateRandomNumber(1, 100);
-    console.log(red);
+// const punteggio = document.querySelector('score');
+// // random rumber
+// const randomNumbers = [];
+// for (let i = 0; i < 16; i++) {
+//     // Genero un numero casuale
+//     let red = generateRandomNumber(1, diff);
+//     console.log(red);
 
-    // Controllo se questo numero appena generato è già presente nell'array
-    let foundInArray = randomNumbers.includes(red);
-    while (foundInArray == true) {
-        red = generateRandomNumber(1, 100);
-        console.log(red);
-        foundInArray = randomNumbers.includes(red);
-    }
+//     // Controllo se questo numero appena generato è già presente nell'array
+//     let foundInArray = randomNumbers.includes(red);
+//     while (foundInArray == true) {
+//         red = generateRandomNumber(1, diff);
+//         console.log(red);
+//         foundInArray = randomNumbers.includes(red);
+//     }
 
-    randomNumbers.push(red);
+//     randomNumbers.push(red);
     
-    console.log(randomNumbers);
-}
+//     console.log(randomNumbers);
+// }
 
 
 /* 
@@ -53,33 +53,67 @@ let score = '';
 
 
 play.addEventListener('click', function(){
-    const cellNumber = parseInt(diff.value);
+    // const cellNumber = parseInt(diff.value);
+    const diff = parseInt(document.getElementById('difficulty').value);
+
+
+    const punteggio = document.querySelector('score');
+// random rumber
+    const randomNumbers = [];
+    for (let i = 0; i < 16; i++) {
+        // Genero un numero casuale
+        let red = generateRandomNumber(1, diff);
+        console.log(red);
+
+        // Controllo se questo numero appena generato è già presente nell'array
+        let foundInArray = randomNumbers.includes(red);
+        while (foundInArray == true) {
+            red = generateRandomNumber(1, diff);
+            console.log(red);
+            foundInArray = randomNumbers.includes(red);
+        }
+
+        randomNumbers.push(red);
+        
+        console.log(randomNumbers);
+}
     
     container.innerHTML= '';
 
-    for (let i = 1; i <= cellNumber; i++){
+    for (let i = 1; i <= diff; i++){
         score = 0;
         const cell = document.createElement('div');
         cell.innerHTML=  i ;
         cell.classList.add('cell');
-        cell.classList.add('cell-' + cellNumber);
+        cell.classList.add('cell-' + diff);
+
+        // Debug
+        // if( randomNumbers.includes(i)){
+        //     cell.classList.add('active-red');
+        // }
+
         cell.addEventListener('click', function(){
             if( randomNumbers.includes(i)){
             this.classList.add('active-red');
             alert('You loooose' + ' il tuo punteggio e di : ' + score)
-            container.innerHTML+='';
+            container.innerHTML +='';
             }   
             else{
+                // Se ha già la classe active skippa
             this.classList.add('active')
             score++;
             }
             console.log(score,"score", typeof score)
             console.log(this.innerHTML);
+            console.log('diff', diff , typeof diff);
+            if(score == (diff - randomNumbers.length)){
+                alert('hai vinto'+'il tuo punteggio;'+ score);
+                
+            }
         });
         container.append(cell);
         
-     }
-     
+     }     
 })
 
 
